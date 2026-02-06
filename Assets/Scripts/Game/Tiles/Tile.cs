@@ -9,7 +9,7 @@ namespace Game.Tiles
         public bool IsInteractable { get; private set; }
         public bool IsMatched { get; private set; }
 
-        public void Construct(TileConfig config)
+        public void SetTileConfig(TileConfig config)
         {
             TileConfig = config;
             IsInteractable = config.IsInteractable;

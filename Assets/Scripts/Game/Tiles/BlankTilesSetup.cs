@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Levels;
-using UnityEngine;
+﻿using Levels;
 
 namespace Game.Tiles
 {

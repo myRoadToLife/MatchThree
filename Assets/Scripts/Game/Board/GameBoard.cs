@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Game.GridSystem;
 using Game.Tiles;
 using Game.Utils;
+using Input;
 using Levels;
 using UnityEngine;
 using VContainer;
@@ -25,6 +25,7 @@ namespace Game.Board
         private TilePool _tilePool;
         private GameDebug _gameDebug;
         private BlankTilesSetup _blankTilesSetup;
+        private InputReader _inputReader;
 
         [Inject]
         private void Construct(Grid grid,
@@ -42,6 +43,9 @@ namespace Game.Board
 
         private void Start()
         {
+            _inputReader = new InputReader();
+            _inputReader.EnableInputs(true);
+
             _grid.SetupGrid(_levelConfig.Width, _levelConfig.Height);
             _blankTilesSetup.SetupBlanks(_levelConfig);
 

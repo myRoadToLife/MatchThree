@@ -30,6 +30,7 @@ namespace Game.Tiles
                 _tilePool[i].gameObject.transform.position = position;
                 return _tilePool[i];
             }
+
             var tile = CreateTile(position, parent);
             return tile;
         }
@@ -40,7 +41,7 @@ namespace Game.Tiles
                 position, Quaternion.identity, parent);
             var blankTile = blankPrefab.GetComponent<Tile>();
             blankTile.SetTileConfig(_resourcesLoader.BlankConfig);
-            return blankTile; 
+            return blankTile;
         }
 
         private Tile CreateTile(Vector3 position, Transform parent)

@@ -148,7 +148,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 367896319}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &51499623
@@ -164,6 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourcesLoading.GameResourcesLoader
   _tilePrefab: {fileID: 3296055641398202275, guid: 8c72f4e6228f000489c38f048b5c2deb, type: 3}
+  _blankTilePrefab: {fileID: 3296055641398202275, guid: 366eddf568e19dd4ebf3429f0a32a437, type: 3}
+  _blankConfig: {fileID: 11400000, guid: c5eb8535be082854e8dac89a1d718f21, type: 2}
   _tileSetConfig: {fileID: 11400000, guid: d42dcf6c78f4e0a43bae7ec65af6ed86, type: 2}
 --- !u!1 &330585543
 GameObject:
@@ -302,6 +305,57 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &367896318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 367896319}
+  - component: {fileID: 367896320}
+  m_Layer: 0
+  m_Name: BlankGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &367896319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367896318}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 51499622}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &367896320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367896318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec64a8167ce64da99f0ed7aac3664a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Tiles.BlankTilesSetup
+  _blankTilesLayout:
+  - _xPos: 0
+    _yPos: 0
+  - _xPos: 1
+    _yPos: 3
+  - _xPos: 9
+    _yPos: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +535,7 @@ MonoBehaviour:
   - {fileID: 51499621}
   _gameBoard: {fileID: 2045078336}
   _loader: {fileID: 51499623}
+  _blankTilesSetup: {fileID: 367896320}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0268dd79154dceb281c5403a3492fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Board.GameBoard
+  _isDebugging: 0
   _tileConfig: {fileID: 11400000, guid: 8b495a44fc57b764ca1a47e789444e28, type: 2}
 --- !u!4 &2045078337
 Transform:

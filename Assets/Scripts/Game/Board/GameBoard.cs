@@ -41,7 +41,7 @@ namespace Game.Board
             _blankTilesSetup = blankTilesSetup;
         }
 
-        private void Start()
+        private void Awake()
         {
             _inputReader = new InputReader();
             _inputReader.EnableInputs(true);
@@ -49,7 +49,6 @@ namespace Game.Board
             _grid.SetupGrid(_levelConfig.Width, _levelConfig.Height);
             _blankTilesSetup.SetupBlanks(_levelConfig);
 
-            CreateBoard();
             _setupCamera.SetCamera(_grid.Width, _grid.Height, true);
 
             if (_isDebugging)

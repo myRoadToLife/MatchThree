@@ -478,6 +478,7 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects:
   - {fileID: 2045078335}
+  - {fileID: 51499621}
   _gameBoard: {fileID: 2045078336}
   _loader: {fileID: 51499623}
 --- !u!1 &832575517

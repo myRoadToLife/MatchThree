@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Animations;
 using Game.GridSystem;
 using Game.Tiles;
 using Game.Utils;
@@ -26,19 +27,22 @@ namespace Game.Board
         private GameDebug _gameDebug;
         private BlankTilesSetup _blankTilesSetup;
         private InputReader _inputReader;
+        private IAnimation _animation;
 
         [Inject]
         private void Construct(Grid grid,
             SetupCamera setupCamera,
             TilePool pool,
             GameDebug gameDebug,
-            BlankTilesSetup blankTilesSetup)
+            BlankTilesSetup blankTilesSetup,
+            IAnimation animation)
         {
             _setupCamera = setupCamera;
             _grid = grid;
             _tilePool = pool;
             _gameDebug = gameDebug;
             _blankTilesSetup = blankTilesSetup;
+            _animation = animation;
         }
 
         private void Awake()
@@ -58,6 +62,16 @@ namespace Game.Board
         public void CreateBoard()
         {
             FillBoard();
+            RevealTiles();
+        }
+
+        private void RevealTiles()
+        {
+            foreach (var tile in _tilesToRefill)
+            {
+                var gameObjectTile = tile.gameObject;
+                _animation.Reveal(gameObjectTile, 1f);
+            }
         }
 
         private void FillBoard()

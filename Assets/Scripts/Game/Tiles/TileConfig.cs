@@ -9,7 +9,7 @@ namespace Game.Tiles
         Jelly,
     }
 
-    [CreateAssetMenu(fileName = "New Tile Config", menuName = "Config/Tile Config")]
+    [CreateAssetMenu(fileName = "Tile Config", menuName = "Configs/Tile Config")]
     public class TileConfig : ScriptableObject
     {
         [SerializeField] private Sprite _sprite;

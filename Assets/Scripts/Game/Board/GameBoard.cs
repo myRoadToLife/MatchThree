@@ -10,19 +10,20 @@ namespace Game.Board
 {
     public class GameBoard : MonoBehaviour
     {
-        [SerializeField] private GameObject _tilePrefab;
         [SerializeField] private TileConfig _tileConfig;
 
         private readonly List<Tile> _tilesToRefill = new();
 
         private Grid _grid;
         private SetupCamera _setupCamera;
+        private TilePool _tilePool;
 
         [Inject]
-        private void Construct(Grid grid, SetupCamera setupCamera)
+        private void Construct(Grid grid, SetupCamera setupCamera, TilePool pool)
         {
             _setupCamera = setupCamera;
             _grid = grid;
+            _tilePool = pool;
         }
 
         private void Start()
@@ -45,12 +46,11 @@ namespace Game.Board
                 {
                     if (_grid.GetValue(x, y)) continue;
 
-                    var tile = Instantiate(_tilePrefab, transform);
-                    tile.transform.position = _grid.GridToWorld(x, y);
-                    Tile tileComponent = tile.GetComponent<Tile>();
-                    
-                    tileComponent.SetTileConfig(_tileConfig);
-                    _grid.SetValue(x, y, tileComponent);
+                    var tile = _tilePool.GetTile(_grid.GridToWorld(x, y), transform);
+
+                    _grid.SetValue(x, y, tile);
+                    tile.gameObject.SetActive(true);
+                    _tilesToRefill.Add(tile);
                 }
             }
         }

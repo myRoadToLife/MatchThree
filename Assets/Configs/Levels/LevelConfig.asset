@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5bf0cf523e44af098f5fe83b133e0f1, type: 3}
+  m_Name: LevelConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Levels.LevelConfig
+  _blankTilesLayout:
+  - _xPos: 0
+    _yPos: 0
+  - _xPos: 7
+    _yPos: 0
+  - _xPos: 0
+    _yPos: 7
+  - _xPos: 7
+    _yPos: 7
+  _width: 8
+  _height: 8
+  _goalScore: 10
+  _movesLimit: 10
+  _levelNumber: 1
+  _tileSets: 0

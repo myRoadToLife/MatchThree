@@ -1,23 +1,22 @@
 ﻿using System.Collections.Generic;
+using Levels;
 using UnityEngine;
 
 namespace Game.Tiles
 {
-    public class BlankTilesSetup : MonoBehaviour
+    public class BlankTilesSetup
     {
-        [SerializeField] private List<BlankTile> _blankTilesLayout;
-        
-        public bool [,] Blanks {get; private set;}
+        public bool[,] Blanks { get; private set; }
 
-        public void SetupBlanks(int width, int height)
+        public void SetupBlanks(LevelConfig levelConfig)
         {
-            Blanks = new bool[width, height];
+            Blanks = new bool[levelConfig.Width, levelConfig.Height];
 
-            for (int i = 0; i < _blankTilesLayout.Count; i++)
+            for (int i = 0; i < levelConfig.BlankTilesLayout.Count; i++)
             {
-                Blanks[_blankTilesLayout[i].XPos, _blankTilesLayout[i].YPos] = true;
+                Blanks[levelConfig.BlankTilesLayout[i].XPos, levelConfig.BlankTilesLayout[i].YPos] = true;
+                Blanks[levelConfig.BlankTilesLayout[i].XPos, levelConfig.BlankTilesLayout[i].YPos] = true;
             }
-            
         }
     }
 }

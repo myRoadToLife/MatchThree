@@ -3,6 +3,7 @@ using Game.Board;
 using Game.GridSystem;
 using Game.Tiles;
 using Game.Utils;
+using MatchTiles;
 using ResourcesLoading;
 using UnityEngine;
 using VContainer;
@@ -26,6 +27,7 @@ namespace DI
             builder.Register<TilePool>(Lifetime.Singleton);
             builder.Register<GameDebug>(Lifetime.Singleton);
             builder.Register<BlankTilesSetup>(Lifetime.Singleton);
+            builder.Register<MatchFinder>(Lifetime.Singleton);
         }
     }
 }

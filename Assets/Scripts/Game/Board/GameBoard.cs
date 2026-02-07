@@ -3,8 +3,8 @@ using Animations;
 using Game.GridSystem;
 using Game.Tiles;
 using Game.Utils;
-using Input;
 using Levels;
+using MatchTiles;
 using UnityEngine;
 using VContainer;
 using Grid = Game.GridSystem.Grid;
@@ -27,6 +27,7 @@ namespace Game.Board
         private GameDebug _gameDebug;
         private BlankTilesSetup _blankTilesSetup;
         private IAnimation _animation;
+        private MatchFinder _matchFinder;
 
         [Inject]
         private void Construct(Grid grid,
@@ -34,7 +35,8 @@ namespace Game.Board
             TilePool pool,
             GameDebug gameDebug,
             BlankTilesSetup blankTilesSetup,
-            IAnimation animation)
+            IAnimation animation,
+            MatchFinder matchFinder)
         {
             _setupCamera = setupCamera;
             _grid = grid;
@@ -42,6 +44,7 @@ namespace Game.Board
             _gameDebug = gameDebug;
             _blankTilesSetup = blankTilesSetup;
             _animation = animation;
+            _matchFinder = matchFinder;
         }
 
         private void Awake()
@@ -58,6 +61,15 @@ namespace Game.Board
         public void CreateBoard()
         {
             FillBoard();
+
+            while (_matchFinder.CheckBoardForMatches(_grid))
+            {
+                ClearBoard();
+                FillBoard();
+            }
+
+            _matchFinder.ClearTilesToRemove();
+
             RevealTiles();
         }
 
@@ -68,6 +80,20 @@ namespace Game.Board
                 var gameObjectTile = tile.gameObject;
                 _animation.Reveal(gameObjectTile, 1f);
             }
+        }
+
+        private void ClearBoard()
+        {
+            if (_tilesToRefill == null)
+                return;
+
+            foreach (var tile in _tilesToRefill)
+            {
+                _grid.SetValue(tile.transform.position, null);
+                tile.gameObject.SetActive(false);
+            }
+
+            _tilesToRefill.Clear();
         }
 
         private void FillBoard()

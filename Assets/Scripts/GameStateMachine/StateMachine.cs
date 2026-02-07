@@ -24,7 +24,8 @@ namespace GameStateMachine
             {
                 new PrepareState(this, _gameBoard),
                 new PlayerTurnState(_grid, this, _animation),
-                new SwapTileState(),
+                new SwapTileState(_grid, this, _animation),
+                
             };
             
             _currentState = _states[0];

@@ -49,8 +49,6 @@ namespace GameStateMachine.States
         {
             var clickPosition = _grid.WorldToGreed(
                 _camera.ScreenToWorldPoint(_inputReader.Position()));
-            
-                Debug.Log(clickPosition);
 
             if (IsValidPosition(clickPosition) == false || IsBlankPosition(clickPosition))
                 return;
@@ -73,8 +71,8 @@ namespace GameStateMachine.States
                 _grid.SetTargetPosition(clickPosition);
                 _animation.AnimateTile(_grid.GetValue(_grid.CurrentPosition.x,
                     _grid.CurrentPosition.y), 1f);
-                Debug.Log("Swap");
-                //_stateSwitcher.SwitchState<SwapTileState>();
+
+                _stateSwitcher.SwitchState<SwapTileState>();
             }
         }
 

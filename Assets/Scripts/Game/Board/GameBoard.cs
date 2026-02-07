@@ -66,6 +66,7 @@ namespace Game.Board
             {
                 ClearBoard();
                 FillBoard();
+                Debug.Log("Доску сделали");
             }
 
             _matchFinder.ClearTilesToRemove();

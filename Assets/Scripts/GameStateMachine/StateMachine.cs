@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Animations;
 using Game.Board;
 using Game.GridSystem;
 using GameStateMachine.States;
+using MatchTiles;
 
 namespace GameStateMachine
 {
@@ -13,19 +14,22 @@ namespace GameStateMachine
         private GameBoard _gameBoard;
         private Grid _grid;
         private IAnimation _animation;
+        private MatchFinder _matchFinder;
 
-        public StateMachine(GameBoard gameBoard, Grid grid, IAnimation animation)
+        public StateMachine(GameBoard gameBoard, Grid grid, IAnimation animation, MatchFinder matchFinder)
         {
             _gameBoard = gameBoard;
             _grid = grid;
             _animation = animation;
+            _matchFinder = matchFinder;
             
             _states = new List<IState>()
             {
                 new PrepareState(this, _gameBoard),
                 new PlayerTurnState(_grid, this, _animation),
-                new SwapTileState(_grid, this, _animation),
-                
+                new SwapTileState(_grid, this, _animation, _matchFinder),
+                new RemoveTileState(_grid, this, _animation, _matchFinder),
+                new RefillGridState()
             };
             
             _currentState = _states[0];

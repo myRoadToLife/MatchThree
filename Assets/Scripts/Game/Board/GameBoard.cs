@@ -26,7 +26,6 @@ namespace Game.Board
         private TilePool _tilePool;
         private GameDebug _gameDebug;
         private BlankTilesSetup _blankTilesSetup;
-        private InputReader _inputReader;
         private IAnimation _animation;
 
         [Inject]
@@ -47,9 +46,6 @@ namespace Game.Board
 
         private void Awake()
         {
-            _inputReader = new InputReader();
-            _inputReader.EnableInputs(true);
-
             _grid.SetupGrid(_levelConfig.Width, _levelConfig.Height);
             _blankTilesSetup.SetupBlanks(_levelConfig);
 

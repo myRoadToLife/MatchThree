@@ -3,6 +3,7 @@ using System.Threading;
 using Animations;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Game.Score;
 using Game.Tiles;
 using MatchTiles;
 using UnityEngine;
@@ -17,13 +18,19 @@ namespace GameStateMachine.States
         private IStateSwitcher _stateSwitcher;
         private IAnimation _animation;
         private MatchFinder _matchFinder;
+        private GameProgress _gameProgress;
 
-        public SwapTileState(Grid grid, IStateSwitcher stateSwitcher, IAnimation animation, MatchFinder matchFinder)
+        public SwapTileState(Grid grid,
+            IStateSwitcher stateSwitcher,
+            IAnimation animation,
+            MatchFinder matchFinder,
+            GameProgress gameProgress)
         {
             _grid = grid;
             _stateSwitcher = stateSwitcher;
             _animation = animation;
             _matchFinder = matchFinder;
+            _gameProgress = gameProgress;
         }
 
         public void Dispose() => _cts?.Dispose();
@@ -44,7 +51,7 @@ namespace GameStateMachine.States
             else
             {
                 //play sound match
-                //spend move
+                _gameProgress.SpendMoves();
                 _stateSwitcher.SwitchState<RemoveTileState>();
             }
         }

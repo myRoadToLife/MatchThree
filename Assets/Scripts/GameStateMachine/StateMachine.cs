@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Animations;
 using Game.Board;
 using Game.GridSystem;
+using Game.Score;
 using Game.Tiles;
 using GameStateMachine.States;
 using MatchTiles;
@@ -17,30 +18,38 @@ namespace GameStateMachine
         private IAnimation _animation;
         private MatchFinder _matchFinder;
         private TilePool _tilePool;
-        
+        private GameProgress _gameProgress;
+        private ScoreCalculator _scoreCalculator;
+
 
         public StateMachine(GameBoard gameBoard,
             Grid grid,
             IAnimation animation,
             MatchFinder matchFinder,
-            TilePool tilePool)
+            TilePool tilePool,
+            GameProgress gameProgress,
+            ScoreCalculator scoreCalculator)
         {
             _gameBoard = gameBoard;
             _grid = grid;
             _animation = animation;
             _matchFinder = matchFinder;
             _tilePool = tilePool;
-            
+            _gameProgress = gameProgress;
+            _scoreCalculator = scoreCalculator;
+
             _states = new List<IState>()
             {
                 new PrepareState(this, _gameBoard),
                 new PlayerTurnState(_grid, this, _animation),
-                new SwapTileState(_grid, this, _animation, _matchFinder),
-                new RemoveTileState(_grid, this, _animation, _matchFinder),
-                new RefillGridState(_grid, this, _animation, _matchFinder, _tilePool, _gameBoard.transform),
-                
+                new SwapTileState(_grid, this, _animation, _matchFinder, _gameProgress),
+                new RemoveTileState(_grid, this, _animation, _matchFinder, _gameProgress, _scoreCalculator),
+                new RefillGridState(_grid, this, _animation, _matchFinder, _tilePool, _gameBoard.transform,
+                    _gameProgress),
+                new WinState(),
+                new LossState(),
             };
-            
+
             _currentState = _states[0];
             _currentState.Enter();
         }
@@ -48,11 +57,10 @@ namespace GameStateMachine
         public void SwitchState<T>() where T : IState
         {
             var state = _states.Find(state => state is T);
-            
+
             _currentState.Exit();
             _currentState = state;
             _currentState?.Enter();
-            
         }
     }
 }

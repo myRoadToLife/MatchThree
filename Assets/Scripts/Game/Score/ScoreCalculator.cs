@@ -1,0 +1,37 @@
+using MatchTiles;
+using UnityEngine;
+
+namespace Game.Score
+{
+    public class ScoreCalculator
+    {
+        private GameProgress _gameProgress;
+
+        public ScoreCalculator(GameProgress gameProgress)
+        {
+            _gameProgress = gameProgress;
+        }
+
+        public void CalculateScoreToAdd(MatchDirection matchDirection)
+        {
+            switch (matchDirection)
+            {
+                case MatchDirection.Horizontal:
+                case MatchDirection.Vertical:
+                    _gameProgress.AddScore(20);
+                    Debug.Log("+ 20 Score");
+                    break;
+                case MatchDirection.LongHorizontal:
+                case MatchDirection.LongVertical:
+                    _gameProgress.AddScore(50);
+                    Debug.Log("+ 50 Score");
+
+                    break;
+                case MatchDirection.Multiply:
+                    _gameProgress.AddScore(150);
+                    Debug.Log("+ 150 Score");
+                    break;
+            }
+        }
+    }
+}

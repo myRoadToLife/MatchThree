@@ -47,6 +47,8 @@ namespace Game.Board
             _matchFinder = matchFinder;
         }
 
+        public LevelConfig LevelConfig => _levelConfig;
+
         private void Awake()
         {
             _grid.SetupGrid(_levelConfig.Width, _levelConfig.Height);

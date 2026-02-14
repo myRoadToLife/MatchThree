@@ -34,6 +34,8 @@ namespace SceneLoading
 
             _loadedScenes.TryAdd(sceneName, loadedScene);
             _cts.Cancel();
+            
+            LoadingIsDone(true);
         }
 
         public async UniTask UnloadAsync(string sceneName)

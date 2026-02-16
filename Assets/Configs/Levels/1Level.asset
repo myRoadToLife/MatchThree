@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5bf0cf523e44af098f5fe83b133e0f1, type: 3}
-  m_Name: LevelConfig
+  m_Name: 1Level
   m_EditorClassIdentifier: Assembly-CSharp::Levels.LevelConfig
   _blankTilesLayout:
   - _xPos: 0

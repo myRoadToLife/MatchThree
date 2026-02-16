@@ -15,6 +15,16 @@ MonoBehaviour:
   m_GroupName: MainGroup
   m_GUID: a194594b190ce704d87521a430adfa4c
   m_SerializeEntries:
+  - m_GUID: 16da968e323f9224aae2e1affb90815f
+    m_Address: Levels6_10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 268127efb773bfd4fa68041ae22ffbeb
+    m_Address: Levels1_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99c9720ab356a0642a771bea13969a05
     m_Address: Game
     m_ReadOnly: 0
